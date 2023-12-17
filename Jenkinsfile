@@ -13,6 +13,7 @@ pipeline {
         }
         stage('Docker-Build') {
             steps {
+                sh 'chmod 777 /var/run/docker.sock'
                 sh 'docker build -t myimage:v1 .'
             }
         }
