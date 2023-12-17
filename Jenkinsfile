@@ -7,10 +7,9 @@ pipeline {
     stages {
         stage('Docker-Verify') {
             steps {
-                options {
-                    retry(3)
+                retry(3) {
+                    sh 'doker --version'
                 }
-               sh 'doker --version'
             }
         }
         stage('Git-Verify') {
