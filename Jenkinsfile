@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Docker-Build') {
             steps {
-                sh 'docker build -t "$Docker_Image_Name":"Docker_Tag" .'
+                sh 'docker build -t "$Docker_Image_Name":"$Docker_Tag" .'
             }
         }
         stage('Docker-Build-Verify') {
