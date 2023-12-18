@@ -5,7 +5,7 @@ pipeline {
         Docker_Tag = "v2"
     }
     options {
-        skipDefaultCheckout true
+        buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '1')
     }
     stages {
         stage ('Pre-Checks') {
