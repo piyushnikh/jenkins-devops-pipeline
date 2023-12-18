@@ -5,19 +5,20 @@ pipeline {
         Docker_Tag = "v2"
     }
     stages {
-        stage('Docker-Verify') {
-            steps {
+        stage ('Pre-Checks') {
+            parallel {
+                stage('Docker-Verify') {
+                steps {
                 retry(3) {
-                    sh 'docker --version'
+                sh 'docker --version'
                 }
-                timeout(time: 10, unit: 'SECONDS') {
-                            sh 'sleep 30'
+                    }
                 }
-            }
-        }
         stage('Git-Verify') {
             steps {
                sh 'git --version'
+            }
+        }
             }
         }
         stage('Docker-Build') {
