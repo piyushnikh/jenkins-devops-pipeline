@@ -5,7 +5,8 @@ pipeline {
         Docker_Tag = "v2"
     }
     options {
-       buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '1')
+        buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')
+        disableConcurrentBuilds()
     }
     stages {
         stage ('Pre-Checks') {
@@ -13,8 +14,9 @@ pipeline {
                 stage('Docker-Verify') {
                 steps {
                 retry(3) {
-                sh 'docker --version'
-                        }
+                    sh 'docker --version'
+                    sh 'sleep 30'
+                    }
                     }
                 }
                 stage('Git-Verify') {
