@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Docker-Build') {
             when {
-                branch 'test'
+                branch 'main'
             }
             steps {
                 sh 'docker build -t "$Docker_Image_Name":"$BUILD_NUMBER" .'
