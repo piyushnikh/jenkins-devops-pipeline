@@ -15,7 +15,6 @@ pipeline {
                 steps {
                 retry(3) {
                     sh 'docker --version'
-                    sh 'sleep 30'
                     }
                     }
                 }
@@ -27,6 +26,9 @@ pipeline {
             }
         }
         stage('Docker-Build') {
+            when {
+                branch 'test'
+            }
             steps {
                 sh 'docker build -t "$Docker_Image_Name":"$BUILD_NUMBER" .'
                 sh 'docker inspect "$Docker_Image_Name":"$BUILD_NUMBER"'
