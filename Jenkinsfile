@@ -1,12 +1,11 @@
 pipeline {
     agent any
-    options {
-        skipDefaultCheckout true
-        timestamps
-    }
     environment {
         Docker_Image_Name = "myimage"
         Docker_Tag = "v2"
+    }
+    options {
+        skipDefaultCheckout true
     }
     stages {
         stage ('Pre-Checks') {
