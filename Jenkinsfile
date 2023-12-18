@@ -11,14 +11,14 @@ pipeline {
                 steps {
                 retry(3) {
                 sh 'docker --version'
-                }
+                        }
                     }
                 }
-        stage('Git-Verify') {
-            steps {
-               sh 'git --version'
-            }
-        }
+                stage('Git-Verify') {
+                    steps {
+                        sh 'git --version'
+                    }
+                }
             }
         }
         stage('Docker-Build') {
