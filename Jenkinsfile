@@ -26,9 +26,6 @@ pipeline {
             }
         }
         stage('Docker-Build') {
-            when {
-                branch 'main'
-            }
             steps {
                 sh 'docker build -t "$Docker_Image_Name":"$BUILD_NUMBER" .'
                 sh 'docker inspect "$Docker_Image_Name":"$BUILD_NUMBER"'
