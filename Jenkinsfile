@@ -4,7 +4,7 @@ pipeline {
         Docker_Image_Name = "myimage"
     }
     options {
-        buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')
+        buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')
         disableConcurrentBuilds()
     }
     stages {
@@ -12,9 +12,7 @@ pipeline {
             parallel {
                 stage('Docker-Verify') {
                 steps {
-                retry(3) {
                     sh 'docker --version'
-                    }
                     }
                 }
                 stage('Git-Verify') {
