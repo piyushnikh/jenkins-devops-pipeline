@@ -25,8 +25,8 @@ pipeline {
         stage('Docker-CleanUp') {
              steps {
                 sh '''
-                docker rm -f $(docker ps -a -q)
-                docker rmi -f $(docker images)
+                docker rm -f "$(docker ps -a -q)"
+                docker rmi -f "$(docker images)"
                 '''
             }
         }
