@@ -22,14 +22,6 @@ pipeline {
                 }
             }
         }
-        stage('Docker-CleanUp') {
-             steps {
-                sh '''
-                docker rm -f "$(docker ps -a -q)"
-                docker rmi -f "$(docker images)"
-                '''
-            }
-        }
         stage('Docker-Build') {
             steps {
                 sh 'docker build -t "$Docker_Image_Name":"$BUILD_NUMBER" .'
