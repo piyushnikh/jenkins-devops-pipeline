@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Docker-Build') {
             steps {
-                sh 'docker build -t "$Docker_Image_Name":"$BUILD_NUMBER" .'
+                sh 'dockers build -t "$Docker_Image_Name":"$BUILD_NUMBER" .'
                 sh 'docker inspect "$Docker_Image_Name":"$BUILD_NUMBER"'
             }
         }
@@ -56,8 +56,13 @@ pipeline {
         }
     }
     post {
-        aborted {
+        always {
             sh 'docker ps'
         }
     }
+    post {
+        failure {
+            sh 'docker rm -f \$(sudo docker ps -a -q) 2> /dev/null || true'
+        }
+    }  
 }
