@@ -56,8 +56,8 @@ pipeline {
         }
     }
     post {
-        always {
-            sh 'docker images'
+        aborted {
+            sh 'docker ps'
         }
     }
 }
