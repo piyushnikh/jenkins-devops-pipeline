@@ -46,9 +46,9 @@ pipeline {
             }
             steps {
                sh '''
-               docker run -itd  -p 80:80 ${Docker_Image_Name}:${BUILD_NUMBER}
+               docker run -itd -p 80:80 475798544865.dkr.ecr.ap-south-1.amazonaws.com/my-jenkins-project:latest
                docker ps
-                '''
+               '''
             }  
         }
     }
