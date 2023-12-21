@@ -30,9 +30,9 @@ pipeline {
         stage('Docker-Build') {
             steps {
                sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 475798544865.dkr.ecr.ap-south-1.amazonaws.com'
-               sh 'docker build -t my-jenkins-project .'
-               sh 'docker tag my-jenkins-project:latest 475798544865.dkr.ecr.ap-south-1.amazonaws.com/my-jenkins-project:latest'
-               sh 'docker push 475798544865.dkr.ecr.ap-south-1.amazonaws.com/my-jenkins-project:latest'
+               sh 'docker build -t my-jenkins-project:"$BUILD_NUMBER" .'
+               sh 'docker tag my-jenkins-project:"$BUILD_NUMBER" 475798544865.dkr.ecr.ap-south-1.amazonaws.com/my-jenkins-project:"$BUILD_NUMBER"'
+               sh 'docker push 475798544865.dkr.ecr.ap-south-1.amazonaws.com/my-jenkins-project:"$BUILD_NUMBER"'
             }
         }
         stage('Docker-Build-Verify') {
