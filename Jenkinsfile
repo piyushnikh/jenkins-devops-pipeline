@@ -29,8 +29,9 @@ pipeline {
         }
         stage('Docker-Build') {
             steps {
-                sh 'docker build -t "$Docker_Image_Name":"$BUILD_NUMBER" .'
-                sh 'docker inspect "$Docker_Image_Name":"$BUILD_NUMBER"'
+               sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 475798544865.dkr.ecr.ap-south-1.amazonaws.com'
+               sh 'docker build -t "$Docker_Image_Name":"$BUILD_NUMBER" .'
+               sh 'docker push "$Docker_Image_Name":"$BUILD_NUMBER"'
             }
         }
         stage('Docker-Build-Verify') {
