@@ -51,6 +51,14 @@ pipeline {
                '''
             }  
         }
+        stage('Prod-Deploy') {
+            steps {
+                sh '''
+                ssh ubuntu@43.204.150.151 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 475798544865.dkr.ecr.ap-south-1.amazonaws.com'
+                ssh ubuntu@43.204.150.151 'docker run -itd -p 80:80 475798544865.dkr.ecr.ap-south-1.amazonaws.com/my-jenkins-project:"$BUILD_NUMBER"'
+                '''
+            }  
+        }
     }
     post {
         always {
