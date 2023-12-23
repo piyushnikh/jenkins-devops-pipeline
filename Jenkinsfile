@@ -58,7 +58,7 @@ pipeline {
             steps {
                 sh '''
                 sshpass -p "31278600aA@" ssh pn02398@13.233.90.9 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 475798544865.dkr.ecr.ap-south-1.amazonaws.com'
-                sshpass -p "31278600aA@" ssh pn02398@13.233.90.9 'docker run -itd -p 80:80 475798544865.dkr.ecr.ap-south-1.amazonaws.com/my-jenkins-project:"$BUILD_NUMBER"'
+                sshpass -p "31278600aA@" ssh pn02398@13.233.90.9 'docker run -d -p 80:80 475798544865.dkr.ecr.ap-south-1.amazonaws.com/my-jenkins-project:"$BUILD_NUMBER"'
                 '''
             }  
         }
